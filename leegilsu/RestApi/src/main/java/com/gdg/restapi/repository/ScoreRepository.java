@@ -15,8 +15,30 @@ public class ScoreRepository {
 
         // 비행기 악보
         save(new Score(null, "비행기", "윤석중", 0, List.of(
+                // [1소절] 떳 다 떳 다 비 행 기 (미 레 도 레 미 미 미)
                 new Note(List.of(64), 500), new Note(List.of(62), 500),
-                new Note(List.of(60), 500), new Note(List.of(62), 500)
+                new Note(List.of(60), 500), new Note(List.of(62), 500),
+                new Note(List.of(64), 500), new Note(List.of(64), 500),
+                new Note(List.of(64), 1000), // '기'는 2박자로 길게
+
+                // [2소절] 날 아 라 (레 레 레)
+                new Note(List.of(62), 500), new Note(List.of(62), 500),
+                new Note(List.of(62), 1000),
+
+                // [3소절] 날 아 라 (미 미 미)
+                new Note(List.of(64), 500), new Note(List.of(64), 500),
+                new Note(List.of(64), 1000),
+
+                // [4소절] 높 이 높 이 날 아 라 (미 레 도 레 미 미 미)
+                new Note(List.of(64), 500), new Note(List.of(62), 500),
+                new Note(List.of(60), 500), new Note(List.of(62), 500),
+                new Note(List.of(64), 500), new Note(List.of(64), 500),
+                new Note(List.of(64), 1000),
+
+                // [5소절] 우 리 비 행 기 (레 레 미 레 도)
+                new Note(List.of(62), 500), new Note(List.of(62), 500),
+                new Note(List.of(64), 500), new Note(List.of(62), 500),
+                new Note(List.of(60), 2000)
         )));
 
         // 작은별 악보
@@ -54,6 +76,27 @@ public class ScoreRepository {
 
                 // C코드(낮은 도,미,솔: 48,52,55) + 멜로디 도(60) - 2박자(1000ms) 유지
                 new Note(List.of(48, 52, 55, 60), 1000)
+        )));
+
+        // 테트리스 메인 테마 악보
+        save(new Score(null, "테트리스 메인 테마", "러시아 민요", 80, List.of( // 80 = 레트로 신디사이저
+                // 1소절 (미 시 도 레 도 시)
+                new Note(List.of(76), 400), new Note(List.of(71), 200),
+                new Note(List.of(72), 200), new Note(List.of(74), 400),
+                new Note(List.of(72), 200), new Note(List.of(71), 200),
+
+                // 2소절 (라 라 도 미 레 도)
+                new Note(List.of(69), 400), new Note(List.of(69), 200),
+                new Note(List.of(72), 200), new Note(List.of(76), 400),
+                new Note(List.of(74), 200), new Note(List.of(72), 200),
+
+                // 3소절 (시~ 도 레 미)
+                new Note(List.of(71), 600), new Note(List.of(72), 200),
+                new Note(List.of(74), 400), new Note(List.of(76), 400),
+
+                // 4소절 (도 라 라~~)
+                new Note(List.of(72), 400), new Note(List.of(69), 400),
+                new Note(List.of(69), 800)  // 마지막은 2박자로 길게 마무리
         )));
     }
 
