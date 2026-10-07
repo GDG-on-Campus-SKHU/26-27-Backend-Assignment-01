@@ -2,12 +2,14 @@ package com.gdg.restapi.controller;
 
 import com.gdg.restapi.dto.ScoreRequest;
 import com.gdg.restapi.dto.ScoreResponse;
+import com.gdg.restapi.service.PlayService;
 import com.gdg.restapi.service.ScoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.sound.midi.MidiUnavailableException;
 import java.util.List;
 
 @RestController
@@ -15,6 +17,7 @@ import java.util.List;
 @RequestMapping("/scores")
 public class ScoreController {
     private final ScoreService scoreService;
+    private final PlayService playService;
 
     // 악보 등록
     @PostMapping
@@ -49,7 +52,8 @@ public class ScoreController {
 
     // id로 악보 재생
     @GetMapping("/{id}/play")
-    public ResponseEntity<ScoreResponse> playById(@PathVariable("id") Long id) {
+    public ResponseEntity<ScoreResponse> playById(@PathVariable("id") Long id) throws MidiUnavailableException, InterruptedException {
+        playService.playById(id);
         return ResponseEntity.status(HttpStatus.OK).body(scoreService.findById(id));
     }
 }
