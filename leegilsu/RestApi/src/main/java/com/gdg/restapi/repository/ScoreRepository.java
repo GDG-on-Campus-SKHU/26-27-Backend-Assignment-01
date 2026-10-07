@@ -64,11 +64,11 @@ public class ScoreRepository {
         return score;
     }
 
-    public List<Score> playAll() {
+    public List<Score> findAll() {
         return new ArrayList<>(scores.values());
     }
 
-    public Optional<Score> playById(Long id) {
+    public Optional<Score> findById(Long id) {
         return Optional.ofNullable(scores.get(id));
     }
 

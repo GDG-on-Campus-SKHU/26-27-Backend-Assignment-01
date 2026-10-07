@@ -22,7 +22,7 @@ public class ScoreController {
         return ResponseEntity.status(HttpStatus.OK).body(scoreService.create(request));
     }
 
-    // 모든 악보 리스트 찾기
+    // 모든 악보 찾기
     @GetMapping
     public ResponseEntity<List<ScoreResponse>> findAll() {
         return ResponseEntity.status(HttpStatus.OK).body(scoreService.findAll());
@@ -40,10 +40,16 @@ public class ScoreController {
         return ResponseEntity.status(HttpStatus.OK).body(scoreService.update(id, request));
     }
 
-    //특정 악보 삭제
+    // id로 악보 삭제
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         scoreService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    // id로 악보 재생
+    @GetMapping("/{id}/play")
+    public ResponseEntity<ScoreResponse> playById(@PathVariable("id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(scoreService.findById(id));
     }
 }

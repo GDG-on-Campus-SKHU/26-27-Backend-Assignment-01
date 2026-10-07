@@ -21,18 +21,18 @@ public class ScoreService {
     }
 
     public List<ScoreResponse> findAll() {
-        return scoreRepository.playAll().stream()
+        return scoreRepository.findAll().stream()
                 .map(ScoreResponse::new)
                 .toList();
     }
 
     public ScoreResponse findById(Long id) {
-        return new ScoreResponse(scoreRepository.playById(id)
+        return new ScoreResponse(scoreRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 악보입니다.")));
     }
 
     public ScoreResponse update(Long id, ScoreRequest request) {
-        Score score = scoreRepository.playById(id)
+        Score score = scoreRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 악보입니다."));
 
         score.update(request.getName(), request.getComposer(), request.getInstrument(), request.getMelody());
