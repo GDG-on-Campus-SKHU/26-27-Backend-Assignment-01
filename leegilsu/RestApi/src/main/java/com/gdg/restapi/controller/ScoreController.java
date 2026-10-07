@@ -22,19 +22,19 @@ public class ScoreController {
         return ResponseEntity.status(HttpStatus.OK).body(scoreService.create(request));
     }
 
-    // 모든 악보 리스트 재생
+    // 모든 악보 리스트 찾기
     @GetMapping
-    public ResponseEntity<List<ScoreResponse>> playAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(scoreService.playAll());
+    public ResponseEntity<List<ScoreResponse>> findAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(scoreService.findAll());
     }
 
-    // 특정 악보 재생
+    // id로 악보 찾기
     @GetMapping("/{id}")
-    public ResponseEntity<ScoreResponse> playById(@PathVariable("id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(scoreService.playById(id));
+    public ResponseEntity<ScoreResponse> findById(@PathVariable("id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(scoreService.findById(id));
     }
 
-    // 특정 악보 수정
+    // id로 악보 수정
     @PatchMapping("/{id}")
     public ResponseEntity<ScoreResponse> update(@PathVariable("id") Long id, @RequestBody ScoreRequest request) {
         return ResponseEntity.status(HttpStatus.OK).body(scoreService.update(id, request));

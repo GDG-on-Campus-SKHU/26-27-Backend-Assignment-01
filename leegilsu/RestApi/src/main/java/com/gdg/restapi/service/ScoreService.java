@@ -20,13 +20,13 @@ public class ScoreService {
         return new ScoreResponse(scoreRepository.save(score));
     }
 
-    public List<ScoreResponse> playAll() {
+    public List<ScoreResponse> findAll() {
         return scoreRepository.playAll().stream()
                 .map(ScoreResponse::new)
                 .toList();
     }
 
-    public ScoreResponse playById(Long id) {
+    public ScoreResponse findById(Long id) {
         return new ScoreResponse(scoreRepository.playById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 악보입니다.")));
     }
