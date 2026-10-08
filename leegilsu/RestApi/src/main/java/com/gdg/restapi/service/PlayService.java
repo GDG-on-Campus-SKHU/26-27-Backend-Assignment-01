@@ -38,8 +38,8 @@ public class PlayService {
 
             // 노트 진행
             for (Note note : melody) {
-                List<Integer> pitches = note.getPitches();
-                Integer duration = note.getDuration();
+                List<Integer> pitches = note.pitches();
+                Integer duration = note.duration();
 
                 if (pitches != null && !pitches.isEmpty()) {
                     pitches.forEach(pitch -> channel.noteOn(pitch, DEFAULT_VELOCITY)); // 건반 누르기
