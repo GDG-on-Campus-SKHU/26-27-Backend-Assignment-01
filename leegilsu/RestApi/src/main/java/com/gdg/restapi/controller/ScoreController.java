@@ -21,7 +21,7 @@ public class ScoreController {
     // 악보 등록
     @PostMapping
     public ResponseEntity<ScoreResponse> create(@RequestBody ScoreRequest request) {
-        return ResponseEntity.status(HttpStatus.OK).body(scoreService.create(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(scoreService.create(request));
     }
 
     // 모든 악보 찾기
