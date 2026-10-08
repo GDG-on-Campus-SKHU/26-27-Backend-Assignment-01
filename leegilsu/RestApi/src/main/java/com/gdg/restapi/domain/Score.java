@@ -1,6 +1,5 @@
 package com.gdg.restapi.domain;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.gdg.restapi.dto.Note;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +13,7 @@ public class Score {
     private String name; // 악보 이름
     private String composer; // 작곡가
     private Integer instrument; // 악기
-    private List<Note> melody; // 멜로디
+    private List<Note> melody; // pitches, duration 저장 리스트
 
     public void update(String name, String composer, Integer instrument, List<Note> melody) {
         if (name != null) {
