@@ -37,9 +37,9 @@ public class PlayService {
             Integer duration = note.getDuration();
 
             if (pitches != null && !pitches.isEmpty()) {
-                for (int pitch : pitches) channel.noteOn(pitch, 80);
+                for (int pitch : pitches) channel.noteOn(pitch, 80); // 건반 누르기
                 Thread.sleep(duration);
-                for (int pitch : pitches) channel.noteOff(pitch);
+                for (int pitch : pitches) channel.noteOff(pitch); // 건반 떼기
             } else {
                 Thread.sleep(duration);
             }
