@@ -1,6 +1,7 @@
 package com.gdg.restapi.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.gdg.restapi.domain.Note;
 import com.gdg.restapi.domain.Score;
 import lombok.Getter;
 

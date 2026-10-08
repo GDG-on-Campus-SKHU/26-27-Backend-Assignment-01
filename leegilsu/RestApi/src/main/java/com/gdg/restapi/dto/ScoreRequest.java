@@ -1,5 +1,6 @@
 package com.gdg.restapi.dto;
 
+import com.gdg.restapi.domain.Note;
 import lombok.Getter;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.gdg.restapi.config;
 
 import com.gdg.restapi.domain.Score;
-import com.gdg.restapi.dto.Note;
+import com.gdg.restapi.domain.Note;
 import com.gdg.restapi.repository.ScoreRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,5 @@
 package com.gdg.restapi.domain;
 
-import com.gdg.restapi.dto.Note;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

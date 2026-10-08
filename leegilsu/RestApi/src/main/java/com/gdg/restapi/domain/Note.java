@@ -1,4 +1,4 @@
-package com.gdg.restapi.dto;
+package com.gdg.restapi.domain;
 
 import lombok.Getter;
 import lombok.Setter;

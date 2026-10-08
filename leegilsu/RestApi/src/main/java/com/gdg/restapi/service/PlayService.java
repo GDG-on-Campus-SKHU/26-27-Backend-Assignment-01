@@ -1,6 +1,6 @@
 package com.gdg.restapi.service;
 
-import com.gdg.restapi.dto.Note;
+import com.gdg.restapi.domain.Note;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
