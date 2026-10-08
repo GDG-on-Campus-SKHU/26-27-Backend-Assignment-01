@@ -14,6 +14,8 @@ import java.util.List;
 public class ScoreService {
     private final ScoreRepository scoreRepository;
 
+    private static final String NOT_FOUND_MESSAGE = "존재하지 않는 악보입니다.";
+
     public ScoreResponse create(ScoreRequest request) {
         Score score = new Score(null, request.getName(), request.getComposer(),
                 request.getInstrument(), request.getMelody());
@@ -28,12 +30,12 @@ public class ScoreService {
 
     public ScoreResponse findById(Long id) {
         return new ScoreResponse(scoreRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 악보입니다.")));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MESSAGE)));
     }
 
     public ScoreResponse update(Long id, ScoreRequest request) {
         Score score = scoreRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 악보입니다."));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MESSAGE));
 
         score.update(request.getName(), request.getComposer(), request.getInstrument(), request.getMelody());
         return new ScoreResponse(score);
@@ -41,7 +43,7 @@ public class ScoreService {
 
     public void delete(Long id) {
         if (!scoreRepository.delete(id)) {
-            throw new IllegalArgumentException("존재하지 않는 악보입니다.");
+            throw new IllegalArgumentException(NOT_FOUND_MESSAGE);
         }
     }
 }
