@@ -9,11 +9,11 @@ import java.util.List;
 @Getter
 @JsonPropertyOrder({"id", "name", "composer", "instrument", "melody"})
 public class ScoreResponse {
-    private Long id; // 악보 id
-    private String name; // 악보 이름
-    private String composer; // 작곡가
-    private Integer instrument; // 악기
-    private List<Note> melody; // 멜로디
+    private final Long id; // 악보 id
+    private final String name; // 악보 이름
+    private final String composer; // 작곡가
+    private final Integer instrument; // 악기
+    private final List<Note> melody; // 멜로디
 
     public ScoreResponse(Score score) {
         this.id = score.getId();
