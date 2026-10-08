@@ -38,26 +38,26 @@ public class ScoreController {
 
     // id로 악보 찾기
     @GetMapping("/{id}")
-    public ResponseEntity<ScoreResponse> findById(@PathVariable("id") Long id) {
+    public ResponseEntity<ScoreResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(scoreService.findById(id));
     }
 
     // id로 악보 수정
     @PatchMapping("/{id}")
-    public ResponseEntity<ScoreResponse> update(@PathVariable("id") Long id, @RequestBody ScoreRequest request) {
+    public ResponseEntity<ScoreResponse> update(@PathVariable Long id, @RequestBody ScoreRequest request) {
         return ResponseEntity.ok(scoreService.update(id, request));
     }
 
     // id로 악보 삭제
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         scoreService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     // id로 악보 재생
-    @GetMapping("/{id}/play")
-    public ResponseEntity<ScoreResponse> playById(@PathVariable("id") Long id) {
+    @PostMapping("/{id}/play") // 서버의 상태 변화 및 자원 소모를 해서 Post 사용
+    public ResponseEntity<ScoreResponse> playById(@PathVariable Long id) {
         ScoreResponse response = scoreService.findById(id); // id가 없을 시 throw
         playService.play(response.getInstrument(), response.getMelody());
         return ResponseEntity.ok(response);
