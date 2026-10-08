@@ -34,9 +34,9 @@ public class PlayService {
                 Integer duration = note.getDuration();
 
                 if (pitches != null && !pitches.isEmpty()) {
-                    for (int pitch : pitches) channel.noteOn(pitch, 80); // 건반 누르기, 볼륨 크기 80으로 고정
+                    pitches.forEach(pitch -> channel.noteOn(pitch, 80)); // 건반 누르기, 볼륨 크기 80으로 고정
                     Thread.sleep(duration); // 박자만큼 스레드 대기(누른 건반 소리 그동안 나옴)
-                    for (int pitch : pitches) channel.noteOff(pitch); // 건반 떼기
+                    pitches.forEach(channel::noteOff); // 건반 떼기
                 } else {
                     Thread.sleep(duration);
                 }
