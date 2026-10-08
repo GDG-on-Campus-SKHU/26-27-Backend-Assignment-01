@@ -20,15 +20,15 @@ public class ScoreDataInitializer implements CommandLineRunner { // 서버가 �
 
     @Override
     public void run(String @NonNull ... args) {
-        scoreRepository.save(AirplanScore());
-        scoreRepository.save(TwinkleStarScore());
-        scoreRepository.save(TetrisScore());
+        scoreRepository.save(createAirplaneScore());
+        scoreRepository.save(createTwinkleStarScore());
+        scoreRepository.save(createTetrisScore());
 
         log.info("초기 악보 데이터 세팅 완료");
     }
 
     // 비행기 악보
-    private Score AirplanScore() {
+    private Score createAirplaneScore() {
         return new Score(null, "비행기", "윤석중", 0, List.of(
                 // [1소절] 떳 다 떳 다 비 행 기 (미 레 도 레 미 미 미)
                 new Note(List.of(64), 500), new Note(List.of(62), 500),
@@ -58,7 +58,7 @@ public class ScoreDataInitializer implements CommandLineRunner { // 서버가 �
     }
 
     // 작은별 악보
-    private Score TwinkleStarScore() {
+    private Score createTwinkleStarScore() {
         return new Score(null, "작은별(화음)", "프랑스 민요", 0, List.of(
                 // [도 도 솔 솔]
                 // C코드(낮은 도,미,솔: 48,52,55) + 멜로디 도(60)
@@ -97,7 +97,7 @@ public class ScoreDataInitializer implements CommandLineRunner { // 서버가 �
     }
 
     // 테트리스 메인 테마 악보
-    private Score TetrisScore() {
+    private Score createTetrisScore() {
         return new Score(null, "테트리스 메인 테마", "러시아 민요", 80, List.of( // 80 = 레트로 신디사이저
                 // 1소절 (미 시 도 레 도 시)
                 new Note(List.of(76), 400), new Note(List.of(71), 200),
