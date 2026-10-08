@@ -4,6 +4,7 @@ import com.gdg.restapi.domain.Score;
 import com.gdg.restapi.dto.Note;
 import com.gdg.restapi.repository.ScoreRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import javax.sound.midi.Synthesizer;
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class PlayService {
     private final ScoreRepository scoreRepository;
@@ -25,6 +27,7 @@ public class PlayService {
         try {
             synthesizer = MidiSystem.getSynthesizer();
             synthesizer.open();
+            log.info("신디사이저 실행");
             MidiChannel channel = synthesizer.getChannels()[0]; // 트랙 지정(0~15)
 
             // 악기 선택
@@ -47,15 +50,16 @@ public class PlayService {
                 }
             }
         } catch (MidiUnavailableException e) { // MIDI 장치를 쓸 수 없음
-            System.err.println("오디오 장치를 열 수 없습니다." + e.getMessage());
+            log.error("오디오 장치를 열 수 없습니다: {}", e.getMessage(), e);
         } catch (InterruptedException e) { // 재생이 강제로 멈춤
-            System.out.println("음악 재생이 강제 중단되었습니다.");
+            log.info("음악 재생이 강제 중단되었습니다.");
             Thread.currentThread().interrupt();
         } catch (Exception e) { // 그 외 예외
-            System.err.println("알 수 없는 에러가 발생했습니다." + e.getMessage());
+            log.error("알 수 없는 에러가 발생했습니다: {}", e.getMessage(), e);
         } finally {
             if (synthesizer != null && synthesizer.isOpen()) {
                 synthesizer.close();
+                log.info("신디사이저 종료");
             }
         }
     }
