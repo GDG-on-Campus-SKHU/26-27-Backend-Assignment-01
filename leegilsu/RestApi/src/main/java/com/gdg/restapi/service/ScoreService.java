@@ -7,6 +7,7 @@ import com.gdg.restapi.repository.ScoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -25,6 +26,7 @@ public class ScoreService {
     public List<ScoreResponse> findAll() {
         return scoreRepository.findAll().stream()
                 .map(ScoreResponse::new)
+                .sorted(Comparator.comparing(ScoreResponse::getId)) // 최신 악보 순 정렬
                 .toList();
     }
 
