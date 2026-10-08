@@ -53,9 +53,10 @@ public class PlayService {
             Thread.currentThread().interrupt();
         } catch (Exception e) { // 그 외 예외
             System.err.println("알 수 없는 에러가 발생했습니다." + e.getMessage());
-        }
-        if (synthesizer != null && synthesizer.isOpen()) {
-            synthesizer.close();
+        } finally {
+            if (synthesizer != null && synthesizer.isOpen()) {
+                synthesizer.close();
+            }
         }
     }
 }
