@@ -52,7 +52,8 @@ public class ScoreController {
     // id로 악보 재생
     @GetMapping("/{id}/play")
     public ResponseEntity<ScoreResponse> playById(@PathVariable("id") Long id) {
-        playService.playById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(scoreService.findById(id));
+        ScoreResponse response = scoreService.findById(id); // id가 없을 시 throw
+        playService.play(response.getInstrument(), response.getMelody());
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

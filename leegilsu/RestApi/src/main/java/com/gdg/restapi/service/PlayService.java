@@ -1,8 +1,6 @@
 package com.gdg.restapi.service;
 
-import com.gdg.restapi.domain.Score;
 import com.gdg.restapi.dto.Note;
-import com.gdg.restapi.repository.ScoreRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
@@ -18,11 +16,10 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class PlayService {
-    private final ScoreRepository scoreRepository;
 
     // id로 악보 재생
     @Async // 비동기화
-    public void playById(Long id) {
+    public void play(Integer instrument, List<Note> melody) {
         Synthesizer synthesizer = null;
         try {
             synthesizer = MidiSystem.getSynthesizer();
@@ -31,12 +28,9 @@ public class PlayService {
             MidiChannel channel = synthesizer.getChannels()[0]; // 트랙 지정(0~15)
 
             // 악기 선택
-            Score score = scoreRepository.findById(id)
-                    .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 악보입니다."));
-            channel.programChange(score.getInstrument());
+            channel.programChange(instrument);
 
             // 노트 진행
-            List<Note> melody = score.getMelody();
             for (Note note : melody) {
                 List<Integer> pitches = note.getPitches();
                 Integer duration = note.getDuration();
