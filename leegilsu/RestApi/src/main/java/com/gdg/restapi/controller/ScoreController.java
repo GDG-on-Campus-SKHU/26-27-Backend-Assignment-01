@@ -52,7 +52,7 @@ public class ScoreController {
 
     // id로 악보 재생
     @GetMapping("/{id}/play")
-    public ResponseEntity<ScoreResponse> playById(@PathVariable("id") Long id) throws MidiUnavailableException, InterruptedException {
+    public ResponseEntity<ScoreResponse> playById(@PathVariable("id") Long id) {
         playService.playById(id);
         return ResponseEntity.status(HttpStatus.OK).body(scoreService.findById(id));
     }
