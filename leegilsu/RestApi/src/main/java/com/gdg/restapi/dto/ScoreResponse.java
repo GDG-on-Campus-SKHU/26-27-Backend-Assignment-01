@@ -20,6 +20,7 @@ public class ScoreResponse {
         this.name = score.getName();
         this.composer = score.getComposer();
         this.instrument = score.getInstrument();
-        this.melody = score.getMelody();
+        // 방어적 복사 및 null일 시 빈 배열 반환
+        this.melody = (score.getMelody() != null) ? List.copyOf(score.getMelody()) : List.of();
     }
 }
