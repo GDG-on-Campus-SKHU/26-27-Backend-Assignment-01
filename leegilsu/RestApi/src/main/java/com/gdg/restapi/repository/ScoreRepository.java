@@ -1,7 +1,6 @@
 package com.gdg.restapi.repository;
 
 import com.gdg.restapi.domain.Score;
-import com.gdg.restapi.dto.Note;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
