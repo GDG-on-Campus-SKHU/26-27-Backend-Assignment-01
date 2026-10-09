@@ -14,8 +14,14 @@ public class Score {
 
     public Score(Long id, String name, String composer, Integer instrument, List<Note> melody) {
         this.id = id;
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("악보명을 작성해주세요.");
+        }
         this.name = name;
         this.composer = composer;
+        if (instrument < 0 || 127 < instrument) {
+            throw new IllegalArgumentException("악기 번호는 0 ~ 127 입니다.");
+        }
         this.instrument = instrument;
         this.melody = (melody != null) ? List.copyOf(melody) : List.of(); // 방어적 복사, null 시 빈 배열 저장
     }
