@@ -24,13 +24,24 @@ public class Score {
     }
 
     public void update(String name, String composer, Integer instrument, List<Note> melody) {
-        if (name != null) validateName(name);
+        if (name != null) {
+            validateName(name);
+        }
         validateInstrument(instrument);
 
-        if (name != null) this.name = name;
-        if (composer != null) this.composer = composer;
-        if (instrument != null) this.instrument = instrument;
-        if (melody != null) this.melody = List.copyOf(melody); // 불변 리스트로 교체
+        if (name != null) {
+            this.name = name;
+        }
+
+        if (composer != null) {
+            this.composer = composer;
+        }
+        if (instrument != null) {
+            this.instrument = instrument;
+        }
+        if (melody != null) {
+            this.melody = List.copyOf(melody); // 불변 리스트로 교체}
+        }
     }
 
     // 악보명 유효성 검사 (null, 공백 허용X)
