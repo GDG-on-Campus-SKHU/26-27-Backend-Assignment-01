@@ -19,7 +19,7 @@ public class Score {
         }
         this.name = name;
         this.composer = composer;
-        if (instrument != null && instrument < 0 || 127 < instrument) {
+        if (instrument != null && (instrument < 0 || 127 < instrument)) {
             throw new IllegalArgumentException("악기 번호는 0 ~ 127 입니다.");
         }
         this.instrument = instrument;
