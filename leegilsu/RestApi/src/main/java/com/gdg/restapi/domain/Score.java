@@ -32,7 +32,6 @@ public class Score {
         if (name != null) {
             this.name = name;
         }
-
         if (composer != null) {
             this.composer = composer;
         }
@@ -40,7 +39,7 @@ public class Score {
             this.instrument = instrument;
         }
         if (melody != null) {
-            this.melody = List.copyOf(melody); // 불변 리스트로 교체}
+            this.melody = List.copyOf(melody); // 불변 리스트로 교체
         }
     }
 
