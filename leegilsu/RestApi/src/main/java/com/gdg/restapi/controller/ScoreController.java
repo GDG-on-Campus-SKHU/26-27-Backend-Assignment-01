@@ -25,7 +25,7 @@ public class ScoreController {
         ScoreResponse response = scoreService.create(request);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest() // 클라이언트가 요청을 보낸 주소
                 .path("/{id}") // 주소 맨 뒷줄에 /{id} 추가
-                .buildAndExpand(response.getId()) // id 값 넣음
+                .buildAndExpand(response.id()) // id 값 넣음
                 .toUri(); // URI로 객체 변환
         return ResponseEntity.created(location).body(response);
     }
@@ -59,7 +59,7 @@ public class ScoreController {
     @PostMapping("/{id}/play") // 서버의 상태 변화 및 자원 소모를 해서 Post 사용
     public ResponseEntity<ScoreResponse> playById(@PathVariable Long id) {
         ScoreResponse response = scoreService.findById(id); // id가 없을 시 throw
-        playService.play(response.getInstrument(), response.getMelody());
+        playService.play(response.instrument(), response.melody());
         return ResponseEntity.ok(response);
     }
 }
