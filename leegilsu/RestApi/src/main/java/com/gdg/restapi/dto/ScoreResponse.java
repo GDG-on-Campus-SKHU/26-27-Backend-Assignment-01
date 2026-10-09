@@ -10,9 +10,9 @@ import java.util.List;
 public record ScoreResponse(
         Long id, // 악보 id
         String name, // 악보 이름
-        String composer, // 작곡가
-        Integer instrument, // 악기
-        List<Note> melody // 멜로디)
+        String composer, // 작곡가명
+        Integer instrument, // 악기 번호
+        List<Note> melody // 음표
 ) {
     public ScoreResponse(Score score) {
         this(
