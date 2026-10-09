@@ -1,8 +1,8 @@
 package com.gdg.restapi.controller;
 
-import com.gdg.restapi.dto.StudentRequest;
-import com.gdg.restapi.dto.StudentResponse;
-import com.gdg.restapi.service.StudentService;
+import com.gdg.restapi.dto.MusicRequest;
+import com.gdg.restapi.dto.MusicResponse;
+import com.gdg.restapi.service.MusicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,33 +19,33 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/students")
-public class StudentController {
-    private final StudentService studentService;
+@RequestMapping("/music")
+public class MusicController {
+    private final MusicService musicService;
 
     @PostMapping
-    public ResponseEntity<StudentResponse> create(@RequestBody StudentRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(studentService.create(request));
+    public ResponseEntity<MusicResponse> create(@RequestBody MusicRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(musicService.create(request));
     }
 
     @GetMapping
-    public ResponseEntity<List<StudentResponse>> findAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(studentService.findAll());
+    public ResponseEntity<List<MusicResponse>> findAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(musicService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StudentResponse> findById(@PathVariable("id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(studentService.findById(id));
+    public ResponseEntity<MusicResponse> findById(@PathVariable("id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(musicService.findById(id));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<StudentResponse> update(@PathVariable("id") Long id, @RequestBody StudentRequest request) {
-        return ResponseEntity.status(HttpStatus.OK).body(studentService.update(id, request));
+    public ResponseEntity<MusicResponse> update(@PathVariable("id") Long id, @RequestBody MusicRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(musicService.update(id, request));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-        studentService.delete(id);
+        musicService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
