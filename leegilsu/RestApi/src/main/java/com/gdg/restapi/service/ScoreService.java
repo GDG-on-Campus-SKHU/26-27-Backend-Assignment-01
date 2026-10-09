@@ -18,8 +18,8 @@ public class ScoreService {
     private static final String NOT_FOUND_MESSAGE = "존재하지 않는 악보입니다.";
 
     public ScoreResponse create(ScoreRequest request) {
-        Score score = new Score(null, request.getName(), request.getComposer(),
-                request.getInstrument(), request.getMelody());
+        Score score = new Score(null, request.name(), request.composer(),
+                request.instrument(), request.melody());
         return new ScoreResponse(scoreRepository.save(score));
     }
 
@@ -39,7 +39,7 @@ public class ScoreService {
         Score score = scoreRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MESSAGE));
 
-        score.update(request.getName(), request.getComposer(), request.getInstrument(), request.getMelody());
+        score.update(request.name(), request.composer(), request.instrument(), request.melody());
         return new ScoreResponse(score);
     }
 
