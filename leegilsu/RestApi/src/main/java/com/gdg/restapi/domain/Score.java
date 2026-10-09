@@ -22,12 +22,18 @@ public class Score {
 
     public void update(String name, String composer, Integer instrument, List<Note> melody) {
         if (name != null) {
+            if (name.isBlank()) { // 공백 허용X
+                throw new IllegalArgumentException("악보명을 작성해 주세요.");
+            }
             this.name = name;
         }
         if (composer != null) {
             this.composer = composer;
         }
         if (instrument != null) {
+            if (instrument < 0 || 127 < instrument) {
+                throw new IllegalArgumentException("악기 번호는 0 ~ 127 입니다.");
+            }
             this.instrument = instrument;
         }
         if (melody != null) {
