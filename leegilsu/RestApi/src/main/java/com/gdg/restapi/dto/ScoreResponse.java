@@ -3,25 +3,25 @@ package com.gdg.restapi.dto;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.gdg.restapi.domain.Note;
 import com.gdg.restapi.domain.Score;
-import lombok.Getter;
 
 import java.util.List;
 
-@Getter
 @JsonPropertyOrder({"id", "name", "composer", "instrument", "melody"})
-public class ScoreResponse {
-    private final Long id; // 악보 id
-    private final String name; // 악보 이름
-    private final String composer; // 작곡가
-    private final Integer instrument; // 악기
-    private final List<Note> melody; // 멜로디
-
+public record ScoreResponse(
+        Long id, // 악보 id
+        String name, // 악보 이름
+        String composer, // 작곡가
+        Integer instrument, // 악기
+        List<Note> melody // 멜로디)
+) {
     public ScoreResponse(Score score) {
-        this.id = score.getId();
-        this.name = score.getName();
-        this.composer = score.getComposer();
-        this.instrument = score.getInstrument();
-        // 방어적 복사 및 null일 시 빈 배열 반환
-        this.melody = (score.getMelody() != null) ? List.copyOf(score.getMelody()) : List.of();
+        this(
+                score.getId(),
+                score.getName(),
+                score.getComposer(),
+                score.getInstrument(),
+                // 방어적 복사 및 null일 시 빈 배열 반환
+                (score.getMelody() != null) ? List.copyOf(score.getMelody()) : List.of()
+        );
     }
 }
