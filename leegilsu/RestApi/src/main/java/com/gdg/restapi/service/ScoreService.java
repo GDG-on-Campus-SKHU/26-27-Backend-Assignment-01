@@ -26,7 +26,7 @@ public class ScoreService {
     public List<ScoreResponse> findAll() {
         return scoreRepository.findAll().stream()
                 .map(ScoreResponse::new)
-                .sorted(Comparator.comparing(ScoreResponse::id)) // 최신 악보 순 정렬
+                .sorted(Comparator.comparing(ScoreResponse::id).reversed()) // 최신 악보 순 정렬
                 .toList();
     }
 
