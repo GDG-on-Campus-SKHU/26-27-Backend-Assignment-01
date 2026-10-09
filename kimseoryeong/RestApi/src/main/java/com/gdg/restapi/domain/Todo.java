@@ -11,15 +11,15 @@ public class Todo {
     private String content;
     private String status;
 
-    public void update(String title, String content, String status) {
-        if (title != null) {
-            this.title = title;
-        }
-        if (content != null) {
-            this.content = content;
-        }
-        if (status != null) {
-            this.status = status;
-        }
+    public void updateTitle(String title) {
+        this.title = title;
+    }
+
+    public void updateContent(String content) {
+        this.content = content;
+    }
+
+    public void updateStatus(String status) {
+        this.status = status;
     }
 }

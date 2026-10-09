@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import com.gdg.restapi.dto.TodoUpdateRequest;
 
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class TodoController {
     private final TodoService todoService;
 
     @PostMapping
-    public ResponseEntity<TodoResponse> create(@RequestBody TodoRequest request) {
+    public ResponseEntity<TodoResponse> create(@Valid @RequestBody TodoRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(todoService.create(request));
     }
 
@@ -39,7 +41,7 @@ public class TodoController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<TodoResponse> update(@PathVariable("id") Long id, @RequestBody TodoRequest request) {
+    public ResponseEntity<TodoResponse> update(@PathVariable("id") Long id, @RequestBody TodoUpdateRequest request) {
         return ResponseEntity.status(HttpStatus.OK).body(todoService.update(id, request));
     }
 
