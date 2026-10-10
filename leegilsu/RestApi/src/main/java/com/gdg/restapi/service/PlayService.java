@@ -30,11 +30,12 @@ public class PlayService {
         try {
             synthesizer = MidiSystem.getSynthesizer();
             synthesizer.open();
-            log.info("신디사이저 실행(악기 번호: {})", instrument);
+            log.info("신디사이저 실행");
             MidiChannel channel = synthesizer.getChannels()[0]; // 트랙 지정(0~15)
 
             // 악기 선택
             channel.programChange(instrument);
+            log.info("악기번호: {}", instrument);
 
             // 노트 진행
             for (Note note : melody) {
