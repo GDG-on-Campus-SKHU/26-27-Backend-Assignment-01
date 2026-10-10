@@ -6,7 +6,6 @@ import com.gdg.restapi.dto.PerformancekrResponse;
 import com.gdg.restapi.repository.PerformancekrRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -16,8 +15,8 @@ public class PerformancekrService {
     private final PerformancekrRepository performancekrRepository;
 
     public PerformancekrResponse create(PerformancekrRequest request) {
-        Performancekr performancekr = new Performancekr(null, request.getName(),
-                request.getVenue(), request.getGuest(), request.getDate());
+        Performancekr performancekr = new Performancekr(null, request .name(),
+                request.venue(), request.guest(), request.startDate(),request.endDate());
         return new PerformancekrResponse(performancekrRepository.save(performancekr));
     }
 
@@ -35,8 +34,7 @@ public class PerformancekrService {
     public PerformancekrResponse update(Long id, PerformancekrRequest request) {
         Performancekr performancekr = performancekrRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 아티스트입니다."));
-
-        performancekr.update(request.getName(), request.getVenue(), request.getGuest(), request.getDate());
+        performancekr.update(request.name(), request.venue(), request.guest(), request.startDate(),request.endDate());
         return new PerformancekrResponse(performancekr);
     }
 

@@ -7,12 +7,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/performancekrmap")
+@RequestMapping("/performances")
 public class PerformancekrController {
     private final PerformancekrService performancekrService;
 
@@ -41,6 +40,4 @@ public class PerformancekrController {
         performancekrService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
-
 }
