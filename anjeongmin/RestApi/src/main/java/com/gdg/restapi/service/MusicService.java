@@ -15,7 +15,7 @@ public class MusicService {
     private final MusicRepository musicRepository;
 
     public MusicResponse create(MusicRequest request) {
-        Music music = new Music(null, request.getNumber(), request.getName(), request.getSinger(), request.getLyricist(), request.getComposer());
+        Music music = new Music(null, request.number(), request.name(), request.singer(), request.lyricist(), request.composer());
         return new MusicResponse(musicRepository.save(music));
     }
 
@@ -34,7 +34,7 @@ public class MusicService {
         Music music = musicRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 노래입니다."));
 
-        music.update(request.getNumber(), request.getName(), request.getSinger(), request.getLyricist(), request.getComposer());
+        music.update(request.number(), request.name(), request.singer(), request.lyricist(), request.composer());
         return new MusicResponse(music);
     }
 
